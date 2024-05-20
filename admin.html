@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Elega-Craft</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            color: #333;
+            margin: 0 10px;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .container {
+            padding: 20px;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel - Elega-Craft</h1>
+        <p>Manage Your Products</p>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+    </nav>
+    <div class="container">
+        <h2>Add New Product</h2>
+        <form id="productForm">
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Product Price:</label>
+                <input type="text" id="productPrice" name="productPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="productImage">Product Image URL:</label>
+                <input type="text" id="productImage" name="productImage" required>
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Product Description:</label>
+                <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="addProduct()">Add Product</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>Elega-Craft's® WebSite 2024. All rights reserved.</p>
+    </footer>
+    <script>
+        function addProduct() {
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            const image = document.getElementById('productImage').value;
+            const description = document.getElementById('productDescription').value;
+
+            if (name && price && image && description) {
+                const newProductHTML = `
+                    <div class="product">
+                        <img src="${image}" alt="${name}">
+                        <h3>${name}</h3>
+                        <p>${description}</p>
+                        <p>$${price}</p>
+                        <button>Add to Cart</button>
+                    </div>
+                `;
+
+                localStorage.setItem('newProduct', newProductHTML);
+                alert('Product added successfully!');
+
+                document.getElementById('productForm').reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
